@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Care Canvas · Retail Service AI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A human-first support-operations lab that connects data analysis, working software, and product judgment.
 
-## Available Scripts
+**[Open the live workspace](https://pratiksha0108.github.io/nike-customer-service-ai/)** · [Product brief and review SOP](docs/product-brief.md)
 
-In the project directory, you can run:
+## Try a 3-minute workflow
 
-### `npm start`
+1. On **Overview**, select a ticket-category bar to drill into its cases.
+2. In **Case room**, inspect a route and complete the practice-review checks. Export your session reviews if needed.
+3. Open **Playbook lab**, switch assistance on/off and adjust handling-time assumptions. Download a decision brief with the source, filters and caveats.
+4. In **Customer desk**, try separate fictional order lookup, product matching and a human handoff. An optional image is previewed locally only.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Data, not theater
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 8,469 records from [Suraj's Customer Support Ticket Dataset on Kaggle](https://www.kaggle.com/datasets/suraj520/customer-support-ticket-dataset), marked CC0/Public Domain in Kaggle metadata.
+- Real-versus-synthetic provenance is unverified: this is practice data, not an actual company's performance.
+- Only eight approved fields are published. Names, emails, demographics, free-text messages, resolution text and timestamps are excluded.
+- 2,769 satisfaction ratings are available. Missing ratings are excluded and coverage is visible.
+- No ticket-created dates, SLA analysis, live queues, causal savings or measured customer outcomes are claimed.
+- Source categories can conflict. Sensitive subjects override draft eligibility even when the ticket type says “Product inquiry.”
 
-### `npm test`
+## Honest assistance boundaries
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The live site uses deterministic routing and opening templates, not a live LLM. Critical cases always escalate; financial/account decisions and data-loss issues remain with people. All drafts require review. No customer messages, refunds or ticket updates are sent. Handling minutes are scenario inputs, not observed savings. Session reviews reset when the page reloads.
 
-### `npm run build`
+The original React/OpenAI concept remains in `src/` and the root package configuration. It is not the application deployed to GitHub Pages. Care Canvas is independent and not affiliated with Nike or the products represented in the practice dataset.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Run the deployed version
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Requires Node.js 20+ and npm:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+npm ci --prefix demo
+npm test --prefix demo
+npm run build --prefix demo
+python3 -m http.server 4322 --directory site
+```
 
-### `npm run eject`
+Open `http://localhost:4322/`. Serve `site/`, not the unbundled source folder. The build embeds the dataset in a single versioned script and uses content-hashed styles. A startup-recovery message replaces endless loading if the script fails.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Reproduce the data preparation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Download the dataset archive from the linked Kaggle source, then run:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```sh
+python3 scripts/prepare_support_data.py /path/to/customer-support.zip
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The script reads the named CSV inside the archive without extracting arbitrary paths, validates unique IDs and ratings, and publishes only an explicit allowlist. The snapshot includes the archive SHA-256 and provenance notes. Do not commit the original archive or customer free text.
 
-## Learn More
+## Verification
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+21 automated checks cover source reconciliation, missing ratings, intersecting filters, sensitive-case precedence, draft controls, empty inputs, slower assistance, export structure, output escaping, the original retail functions, and self-contained release assets.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Browser checks cover chart drill-down, review gates, routing controls, scenario recalculation, download contents, empty-state recovery and customer tasks. Reduced-motion preferences and a manual pause control are supported. This prototype is not a production helpdesk; see the product brief for research and rollout requirements.

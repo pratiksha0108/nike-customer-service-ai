@@ -1,1 +1,85 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Try three support journeys: track a sample order, find a product, or prepare a damage report for a human agent."><title>Retail Service AI | Interactive demo</title><link rel="stylesheet" href="./style.css"></head><body><header><a href="https://pratiksha0108.github.io/portfolio/projects/">← All projects</a><span class="badge">Interactive sample</span></header><main><section class="hero"><p class="eyebrow">Customer experience</p><h1>A clearer path<br>from question to resolution.</h1><p class="intro">Try three support journeys: track a sample order, find a product, or prepare a damage report for a human agent.</p><div class="notice">Independent portfolio concept, not affiliated with Nike. Scripted replies and fictional orders/products. No AI model, image analysis, real orders or support submissions.</div></section><div id="app"></div><p id="status" class="status" role="status" aria-live="polite"></p></main><footer><span>Built by Pratiksha Shirsat · Session-only demo</span><a href="https://github.com/pratiksha0108/nike-customer-service-ai" target="_blank" rel="noreferrer">Original source ↗</a></footer><script type="module" src="./app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Care Canvas: an interactive support-operations lab. Explore 8,469 practice tickets, review cases, and test a human-first routing playbook."
+    />
+    <meta name="theme-color" content="#183d36" />
+    <title>Care Canvas | Support, thoughtfully.</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <a class="skip" href="#workspace">Skip to workspace</a>
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Care Canvas home"
+        ><span class="brand-icon">✳</span
+        ><span
+          >carecanvas<span class="brand-sub"
+            >THE SUPPORT OPERATIONS LAB</span
+          ></span
+        ></a
+      >
+      <nav aria-label="Workspace">
+        <button data-view="overview" aria-current="page">◉ Overview</button
+        ><button data-view="queue">▤ Case room</button
+        ><button data-view="playbook">⌘ Playbook lab</button
+        ><button data-view="desk">♡ Customer desk</button>
+      </nav>
+      <button
+        class="icon-button"
+        id="source-button"
+        aria-label="Data and project details"
+      >
+        ⓘ
+      </button>
+    </header>
+    <main id="workspace" tabindex="-1">
+      <div class="loading">
+        <span class="spinner"></span>
+        <h1>Opening your support workspace…</h1>
+        <p>Preparing a local practice dataset. No account needed.</p>
+      </div>
+    </main>
+    <footer>
+      <span>Made with care by Pratiksha Shirsat</span
+      ><a href="https://pratiksha0108.github.io/portfolio/projects/"
+        >All projects ↗</a
+      ><a href="https://github.com/pratiksha0108/nike-customer-service-ai"
+        >Source code ↗</a
+      ><button id="motion-button" aria-pressed="false">Pause motion</button
+      ><span>Independent portfolio project. Not affiliated with Nike.</span>
+    </footer>
+    <div id="status" class="toast" role="status" aria-live="polite"></div>
+    <dialog id="details">
+      <div class="dialog-top">
+        <span class="eyebrow">BEHIND THE CANVAS</span
+        ><button
+          id="close-details"
+          class="icon-button"
+          aria-label="Close details"
+        >
+          ✕
+        </button>
+      </div>
+      <div id="details-body"></div>
+    </dialog>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to use the interactive workspace.
+        <a href="./data/support.json">Download the categorical dataset</a>.
+      </p></noscript
+    >
+    <script>
+      window.bootFailure = function () {
+        if (document.documentElement.dataset.ready) return;
+        document.getElementById("workspace").innerHTML =
+          '<section class="loading"><h1>Let’s reconnect your workspace.</h1><p>The app could not finish loading. Your browser may have an older cached version.</p><button class="primary" onclick="location.href=location.pathname+\'?refresh=\'+Date.now()">Reload latest version ↻</button></section>';
+      };
+      window.bootTimer = setTimeout(window.bootFailure, 12000);
+    </script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
